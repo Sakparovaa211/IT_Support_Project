@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>IT-қолдау жүйесі</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f4f8;
+            margin: 40px;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        a, button {
+            padding: 9px 15px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>IT-қолдау өтінімдері</h1>
+
+    <a href="{% url 'ticket_create' %}">
+        + Жаңа өтінім
+    </a>
+
+    <table>
+        <tr>
+            <th>Тақырып</th>
+            <th>Басымдық</th>
+            <th>Мәртебе</th>
+            <th>Әрекет</th>
+        </tr>
+
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.title }}</td>
+            <td>{{ ticket.get_priority_display }}</td>
+            <td>{{ ticket.get_status_display }}</td>
+            <td>
+                <a href="{% url 'ticket_delete' ticket.pk %}">
+                    Жою
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Әзірге өтінім жоқ</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

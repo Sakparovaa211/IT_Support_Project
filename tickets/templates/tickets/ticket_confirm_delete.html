@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>Өтінімді жою</title>
+</head>
+<body>
+    <h2>Өтінімді жойғыңыз келе ме?</h2>
+
+    <p>{{ ticket.title }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Иә, жою</button>
+    </form>
+
+    <a href="{% url 'ticket_list' %}">Болдырмау</a>
+</body>
+</html>
